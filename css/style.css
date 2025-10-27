@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Tela de Loading */
+#loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0f3460, #1a1a2e);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#loading-screen h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(78, 205, 196, 0.5);
+}
+
+.loading-bar {
+    width: 300px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #4ecdc4, #44a08d);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+/* HUD do Jogo */
+#hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Barra de Vida */
+#health-bar {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 2px solid #ff6b6b;
+    position: relative;
+    min-width: 150px;
+}
+
+.health-fill {
+    height: 20px;
+    background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+    border-radius: 10px;
+    width: 100%;
+    transition: width 0.3s ease;
+}
+
+.health-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+}
+
+/* Display de Era */
+#era-display {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 2px solid #4ecdc4;
+    text-align: center;
+}
+
+.era-name {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.era-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.era-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid transparent;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.era-btn:hover {
+    transform: scale(1.1);
+    border-color: #4ecdc4;
+}
+
+.era-btn.active {
+    border-color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.2);
+}
+
+/* Recursos */
+#resources {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 2px solid #f9c74f;
+}
+
+.resource {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+/* Canvas do Jogo */
+#game-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
+}
+
+/* Menu de Crafting */
+#crafting-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 3px solid #f9c74f;
+    z-index: 200;
+    min-width: 300px;
+}
+
+#crafting-menu h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #f9c74f;
+}
+
+.crafting-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.craft-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.craft-item:hover {
+    background: rgba(249, 199, 79, 0.2);
+    transform: translateX(5px);
+}
+
+.item-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.craft-item span {
+    flex: 1;
+}
+
+.cost {
+    font-size: 0.8rem;
+    color: #f9c74f;
+}
+
+#close-crafting {
+    width: 100%;
+    padding: 0.5rem;
+    background: #ff6b6b;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#close-crafting:hover {
+    background: #ff5252;
+}
+
+/* Efeitos visuais para diferentes eras */
+.era-prehistoric {
+    filter: sepia(0.3) brightness(0.9);
+}
+
+.era-medieval {
+    filter: saturate(1.2) contrast(1.1);
+}
+
+.era-modern {
+    filter: none;
+}
+
+.era-future {
+    filter: hue-rotate(180deg) brightness(1.1);
+}
