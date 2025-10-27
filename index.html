@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrono Crafter</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Tela de Loading -->
+        <div id="loading-screen">
+            <h1>Chrono Crafter</h1>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p>Carregando aventura temporal...</p>
+        </div>
+
+        <!-- HUD do Jogo -->
+        <div id="hud" class="hidden">
+            <div id="health-bar">
+                <div class="health-fill"></div>
+                <span class="health-text">100/100</span>
+            </div>
+            <div id="era-display">
+                <span class="era-name">Era Moderna</span>
+                <div class="era-icons">
+                    <button class="era-btn" data-era="prehistoric">🦕</button>
+                    <button class="era-btn" data-era="medieval">🏰</button>
+                    <button class="era-btn active" data-era="modern">🏙️</button>
+                    <button class="era-btn" data-era="future">🚀</button>
+                </div>
+            </div>
+            <div id="resources">
+                <div class="resource">🪵 Madeira: <span id="wood-count">0</span></div>
+                <div class="resource">🪨 Pedra: <span id="stone-count">0</span></div>
+                <div class="resource">⚡ Energia: <span id="energy-count">0</span></div>
+            </div>
+        </div>
+
+        <!-- Tela do Jogo -->
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Menu de Crafting -->
+        <div id="crafting-menu" class="hidden">
+            <h3>📦 Crafting</h3>
+            <div class="crafting-items">
+                <div class="craft-item" data-item="sword">
+                    <div class="item-icon">⚔️</div>
+                    <span>Espada Básica</span>
+                    <div class="cost">🪵10 🪨5</div>
+                </div>
+                <div class="craft-item" data-item="shield">
+                    <div class="item-icon">🛡️</div>
+                    <span>Escudo</span>
+                    <div class="cost">🪵15 🪨8</div>
+                </div>
+                <div class="craft-item" data-item="platform">
+                    <div class="item-icon">🧱</div>
+                    <span>Plataforma</span>
+                    <div class="cost">🪵5</div>
+                </div>
+            </div>
+            <button id="close-crafting">Fechar</button>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
